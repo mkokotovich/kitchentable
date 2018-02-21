@@ -10,6 +10,12 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
         read_only_fields = ('posts',)
 
 
+class UserSummarySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = User
+        fields = ('url', 'username')
+
+
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Group
@@ -17,15 +23,10 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class LikeSerializer(serializers.HyperlinkedModelSerializer):
+    owner = UserSummarySerializer(many=False, read_only=True)
     class Meta:
         model = Like
         fields = ('url', 'owner', 'post')
-
-
-class UserSummarySerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = User
-        fields = ('url', 'username')
 
 
 class LikeInfoSerializer(serializers.HyperlinkedModelSerializer):
@@ -37,6 +38,7 @@ class LikeInfoSerializer(serializers.HyperlinkedModelSerializer):
 
 class PostSerializer(serializers.HyperlinkedModelSerializer):
     likes = LikeInfoSerializer(many=True, read_only=True)
+    owner = UserSummarySerializer(many=False, read_only=True)
     class Meta:
         model = Post
         fields = ('url', 'owner', 'content', 'likes')
