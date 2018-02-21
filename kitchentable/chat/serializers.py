@@ -7,6 +7,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'username', 'email', 'groups', 'posts')
+        read_only_fields = ('posts',)
 
 
 class GroupSerializer(serializers.HyperlinkedModelSerializer):
@@ -19,7 +20,7 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Post
         fields = ('url', 'owner', 'content', 'likes')
-        read_only_fields = ( 'likes', )
+        read_only_fields = ('likes',)
 
 
 class LikeSerializer(serializers.HyperlinkedModelSerializer):
