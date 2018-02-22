@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { PostService } from './post.service';
 
 @Component({
   selector: 'app-root',
@@ -8,11 +9,21 @@ import { Component } from '@angular/core';
 export class AppComponent {
     title = 'app';
     public posts: Array<any> = [
-    {text: 'A few posts'},
-    {text: 'Some important content'},
-  ];
+        {content: 'A few posts'},
+        {content: 'Some important content'},
+    ];
+
+    constructor(private postService: PostService) {
+        postService.get().subscribe((posts: any) => this.assignPosts(posts));
+    }
+
+    assignPosts(posts: Array<any>) {
+        console.log(this.posts);
+        this.posts = posts;
+        console.log(this.posts);
+    }
 
     addPost(postText: string) {
-        this.posts.unshift({text: postText});
+        this.posts.unshift({content: postText});
     }
 }

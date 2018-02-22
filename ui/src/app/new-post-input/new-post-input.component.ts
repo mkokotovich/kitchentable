@@ -9,7 +9,7 @@ export class NewPostInputComponent implements OnInit {
 
     @Output() onPostAdd = new EventEmitter<string>();
 
-    public newPost: any = {text: ''};
+    public newPost: any = {content: ''};
 
     constructor() { }
 
@@ -17,7 +17,7 @@ export class NewPostInputComponent implements OnInit {
     }
 
     submitNewPost() {
-        this.onPostAdd.emit(this.newPost.text);
-        this.newPost.text = '';
+        this.onPostAdd.emit(this.newPost.content);
+        this.newPost.content = '';
     }
 }
