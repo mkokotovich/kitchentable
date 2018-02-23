@@ -17,7 +17,7 @@ export class NewPostInputComponent implements OnInit {
     }
 
     submitNewPost() {
-        this.onPostAdd.emit(this.newPost.content);
-        this.newPost.content = '';
+        this.onPostAdd.emit(this.newPost.text);
+        this.newPost.text = '';
     }
 }

@@ -1,21 +1,4 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Kitchen Table</a>
 </nav>
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-3">
-            <!-- Profile info? -->
-            <p class="mt-4">
-            Welcome to the Kitchen Table
-            </p>
-            <!-- New post input -->
-            <app-new-post-input (onPostAdd)="addPost($event)"></app-new-post-input>
-        </div>
-        <div class="col-9">
-            <!-- List of posts -->
-            <div class="row">
-                <app-post-list class="col-12" [posts]="posts"></app-post-list>
-            </div>
-        </div>
-    </div>
-</div>
+<router-outlet></router-outlet>
