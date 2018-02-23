@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-
+import { JwtModule } from '@auth0/angular-jwt';
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -25,11 +25,19 @@ import { HomeComponent } from './home/home.component';
     HomeComponent
   ],
   imports: [
+      AppRoutingModule,
       BrowserModule,
       FormsModule,
       HttpClientModule,
+      JwtModule.forRoot({
+          config: {
+              tokenGetter: () => {
+                  return localStorage.getItem('id_token');
+              },
+              whitelistedDomains: ['localhost:8000']
+          }
+      }),
       ReactiveFormsModule,
-      AppRoutingModule
   ],
   providers: [
       PostService,

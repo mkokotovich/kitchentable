@@ -1,0 +1,10 @@
+.auth {
+    float: right;
+}
+a.authlink {
+    text-decoration: none;
+    color: #ffffff;
+    text-align: right;
+    font-weight: bold;
+    cursor: pointer;
+}

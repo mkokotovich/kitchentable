@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 export class LoginComponent implements OnInit {
     form:FormGroup;
+    error = '';
 
     constructor(@Inject(FormBuilder) fb:FormBuilder,
         private authService: AuthService,
@@ -27,12 +28,15 @@ export class LoginComponent implements OnInit {
 
         if (val.email && val.password) {
             this.authService.login(val.email, val.password)
-                .subscribe(
-                    () => {
+                .subscribe( result => {
+                    console.log(result);
+                    if (result == true) {
                         console.log("User is logged in");
                         this.router.navigateByUrl('/');
+                    } else {
+                        this.error = 'Username or password is incorrect';
                     }
-                );
+                });
         }
     }
 
