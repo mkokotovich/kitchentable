@@ -11,7 +11,7 @@ export class PostService {
   }
 
   add(payload) {
-      return this.http.post(`/api/posts/`, {content: payload});
+      return this.http.post(`/api/posts/`, payload);
   }
 
   remove(payload) {

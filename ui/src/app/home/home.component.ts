@@ -17,14 +17,14 @@ export class HomeComponent implements OnInit {
     }
 
     assignPosts(posts: Array<any>) {
-        console.log(this.posts);
         this.posts = posts;
-        console.log(this.posts);
     }
 
     addPost(postText: string) {
-        this.posts.unshift({content: postText});
-        console.log(this.posts);
+        this.postService.add({content: postText})
+            .subscribe((newPost: any) => {
+                this.posts.unshift({content: newPost.content});
+            });
     }
 
     ngOnInit() {
