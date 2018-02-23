@@ -10,6 +10,7 @@ import { PostListComponent } from './post-list/post-list.component';
 import { NewPostInputComponent } from './new-post-input/new-post-input.component';
 
 import { AuthService } from './auth.service';
+import { AuthGuardService } from './auth-guard.service';
 import { PostService } from './post.service';
 import { LoginComponent } from './login/login.component';
 import { AppRoutingModule } from './app-routing/app-routing.module';
@@ -22,7 +23,7 @@ import { HomeComponent } from './home/home.component';
     PostListComponent,
     NewPostInputComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
       AppRoutingModule,
@@ -40,8 +41,9 @@ import { HomeComponent } from './home/home.component';
       ReactiveFormsModule,
   ],
   providers: [
+      AuthService,
+      AuthGuardService,
       PostService,
-      AuthService
   ],
   bootstrap: [AppComponent]
 })

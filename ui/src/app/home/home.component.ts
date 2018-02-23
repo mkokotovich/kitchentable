@@ -23,7 +23,15 @@ export class HomeComponent implements OnInit {
     addPost(postText: string) {
         this.postService.add({content: postText})
             .subscribe((newPost: any) => {
-                this.posts.unshift({content: newPost.content});
+                this.posts.unshift(newPost);
+            });
+    }
+
+    deletePost(post: any) {
+        this.postService.remove(post)
+            .subscribe(() => {
+                var index = this.posts.indexOf(post)
+                this.posts.splice(index, 1);
             });
     }
 

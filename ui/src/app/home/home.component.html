@@ -11,7 +11,7 @@
         <div class="col-9">
             <!-- List of posts -->
             <div class="row">
-                <app-post-list class="col-12" [posts]="posts"></app-post-list>
+                <app-post-list class="col-12" [posts]="posts" (postDelete)="deletePost($event)"></app-post-list>
             </div>
         </div>
     </div>

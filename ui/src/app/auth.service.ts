@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/catch';
-import * as moment from "moment";
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/shareReplay';
 
 export class User {
     constructor() {}
@@ -15,16 +13,9 @@ export class User {
 @Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
-
-        /*
-    login(username:string, password:string ) {
-        return this.http.post<User>('/api/token-auth/', {username, password})
-        //return this.http.post('/api/login', {email, password})
-            .do(res => this.setSession)
-            .shareReplay();
-    }
-         */
+    constructor(
+        private http: HttpClient,
+        private jwtHelper: JwtHelperService) { }
 
     login(username: string, password: string): Observable<boolean> {
         return this.http.post<any>('/api/token-auth/', { username: username, password: password })
@@ -47,31 +38,25 @@ export class AuthService {
             });
     }
 
-    private setSession(authResult) {
-        console.log(authResult)
-        const expiresAt = moment().add(authResult.expiresIn,'second');
-
-        localStorage.setItem('id_token', authResult.idToken);
-        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()) );
+    public isAuthenticated(): boolean {
+        const token = localStorage.getItem('id_token');
+        // Check whether the token is expired and return
+        // true or false
+        if (!token) {
+            return false;
+        }
+        return !this.jwtHelper.isTokenExpired(token);
     }
 
     logout() {
         localStorage.removeItem("id_token");
-        localStorage.removeItem("expires_at");
     }
 
     public isLoggedIn(): Boolean {
-        var id_token = localStorage.getItem("id_token");
-        return !!id_token;
+        return this.isAuthenticated();
     }
 
-    isLoggedOut() {
+    public isLoggedOut(): Boolean {
         return !this.isLoggedIn();
-    }
-
-    getExpiration() {
-        const expiration = localStorage.getItem("expires_at");
-        const expiresAt = JSON.parse(expiration);
-        return moment(expiresAt);
     }
 }

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class PostService {
@@ -8,6 +9,12 @@ export class PostService {
  
   get() {
       return this.http.get(`/api/posts/`);
+      /*  TODO - catch 401 errors and log out the user
+          .catch((err: HttpErrorResponse) => {
+              console.error('An error occurred retrieving posts:', err.error);
+              return Observable.of<any>();
+          });
+       */
   }
 
   add(payload) {
@@ -15,10 +22,12 @@ export class PostService {
   }
 
   remove(payload) {
-    return this.http.delete(`/api/posts/${payload.id}`);
+      const url = new URL(payload.url);
+      return this.http.delete(url.pathname);
   }
 
   update(payload) {
-    return this.http.patch(`/api/posts/${payload.id}`, payload);
+      const url = new URL(payload.url);
+      return this.http.patch(url.pathname, payload);
   }
 }
