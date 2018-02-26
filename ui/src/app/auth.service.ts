@@ -17,12 +17,8 @@ export class AuthService {
         private http: HttpClient,
         private jwtHelper: JwtHelperService) { }
 
-    login(username: string, password: string): Observable<boolean> {
+    login(username: string, password: string): Observable<any> {
         return this.http.post<any>('/api/token-auth/', { username: username, password: password })
-            .catch((err: HttpErrorResponse) => {
-                console.error('An error occurred on login:', err.error);
-                return Observable.of<boolean>(false);
-            })
             .map(response => {
                 // login successful if there's a jwt token in the response
                 var token = response.token;
@@ -35,6 +31,24 @@ export class AuthService {
                     // return false to indicate failed login
                     return false;
                 }
+            })
+            .catch((err: HttpErrorResponse) => {
+                console.error('An error occurred on login:', err.error);
+                return Observable.of<any>(err.error);
+            });
+    }
+
+    signup(username: string, email: string, password: string): Observable<any> {
+        return this.http.post('/api/users/', { username: username,
+                                              email: email,
+                                              password: password })
+            .map(response => {
+                // TODO: change to using email to log in
+                return true;
+            })
+            .catch((err: HttpErrorResponse) => {
+                console.error('An error occurred while signing up:', err.error);
+                return Observable.of<any>(err.error);
             });
     }
 

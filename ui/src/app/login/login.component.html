@@ -1,37 +1,80 @@
-<div class="container-fluid pt-5 pl-5">
-    <div class="row">
-        <div>
-        <form [formGroup]="form">
-            <fieldset>
-                <legend>Login</legend>
-                <div class="form-field">
-                    <label>Email:</label>
-                    <input name="email" formControlName="email">
-                </div>
-                <div class="form-field">
-                    <label>Password:</label>
-                    <input name="password" formControlName="password"
-                                           type="password">
-                </div>
-                <div *ngIf="email.invalid && (email.dirty || email.touched)"
-                                              class="alert alert-danger">
-                    <div *ngIf="email.errors.required">
-                        Email is required.
+<div class="container-fluid">
+    <div class="col-12 mt-4">
+        <div class="row justify-content-center">
+            <div *ngIf="signupSuccess" class="alert alert-success">{{signupSuccess}}</div>
+        </div>
+        <div class="row justify-content-around">
+            <div class="col-md-4 mb-5">
+                <form [formGroup]="loginForm">
+                    <fieldset>
+                        <legend>Login</legend>
+                        <div class="form-field">
+                            <label>Username:</label>
+                            <input name="loginEmail" formControlName="loginEmail">
+                        </div>
+                        <div *ngIf="loginEmail.invalid && loginEmail.dirty"
+                                                   class="alert alert-danger">
+                            Username is required.
+                        </div>
+                        <div class="form-field">
+                            <label>Password:</label>
+                            <input name="loginPassword" formControlName="loginPassword"
+                                                   type="password">
+                        </div>
+                        <div *ngIf="loginPassword.invalid && loginPassword.dirty"
+                                                   class="alert alert-danger">
+                            Password is required.
+                        </div>
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-primary"
+                                              (click)="login()">Login</button>
                     </div>
-                </div>
-                <div *ngIf="password.invalid && (password.dirty || password.touched)"
-                                              class="alert alert-danger">
-                    <div *ngIf="password.errors.required">
-                        Password is required.
-                    </div>
-                </div>
-            </fieldset>
-            <div class="form-buttons">
-                <button type="button" class="btn btn-primary"
-                                      (click)="login()">Login</button>
+                </form>
+                <div *ngIf="loginError" class="mt-3 alert alert-danger" style="white-space:pre-wrap;">{{loginError}}</div>
             </div>
-        </form>
-        <div *ngIf="error" class="mt-3 alert alert-danger">{{error}}</div>
-    </div>
+            <div class="col-md-4 mb-5">
+                <form [formGroup]="signupForm">
+                    <fieldset>
+                        <legend>Sign Up</legend>
+                        <div class="form-field">
+                            <label>Username:</label>
+                            <input name="signupUsername" formControlName="signupUsername">
+                        </div>
+                        <div *ngIf="signupUsername.invalid && signupUsername.dirty"
+                                                   class="alert alert-danger">
+                            Username is required.
+                        </div>
+                        <div class="form-field">
+                            <label>Email:</label>
+                            <input name="signupEmail" formControlName="signupEmail">
+                        </div>
+                        <div *ngIf="signupEmail.invalid && signupEmail.dirty"
+                                                   class="alert alert-danger">
+                            Email is required.
+                        </div>
+                        <div class="form-field">
+                            <label>Password:</label>
+                            <input name="signupPassword" formControlName="signupPassword"
+                                                   type="password">
+                        </div>
+                        <div *ngIf="signupPassword.invalid && signupPassword.dirty"
+                                                   class="alert alert-danger">
+                            Password is required.
+                        </div>
+                        <div class="form-field">
+                            <label>Verify Password:</label>
+                            <input name="signupVerifyPassword" formControlName="signupVerifyPassword"
+                                                   type="password">
+                        </div>
+                    </fieldset>
+                    <div class="form-buttons">
+                        <button type="button" class="btn btn-primary"
+                                              (click)="signup()">Sign Up</button>
+                    </div>
+                </form>
+                <div *ngIf="signupError" class="mt-3 alert alert-danger" style="white-space:pre-wrap;">{{signupError}}</div>
+            </div>
+        </div>
     </div>
 </div>

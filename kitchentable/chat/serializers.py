@@ -4,9 +4,16 @@ from kitchentable.chat.models import *
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
+    password = serializers.CharField(write_only=True)
+
+    def create(self, validated_data):
+        user = User.objects.create_user(**validated_data)
+        user.save()
+        return user
+
     class Meta:
         model = User
-        fields = ('url', 'username', 'email', 'groups', 'posts')
+        fields = ('url', 'username', 'email', 'password', 'groups', 'posts')
         read_only_fields = ('posts',)
 
 
