@@ -3,6 +3,7 @@ from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated, AllowAny
 from kitchentable.chat.serializers import *
 from kitchentable.chat.models import *
+from kitchentable.chat.permissions import *
 
 
 class UserViewSet(viewsets.ModelViewSet):
@@ -37,6 +38,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all().order_by('-created')
     serializer_class = PostSerializer
+    permission_classes = (IsAuthenticated, IsOwnerPermission,)
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -45,3 +47,7 @@ class PostViewSet(viewsets.ModelViewSet):
 class LikeViewSet(viewsets.ModelViewSet):
     queryset = Like.objects.all()
     serializer_class = LikeSerializer
+    permission_classes = (IsAuthenticated, IsOwnerPermission,)
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
