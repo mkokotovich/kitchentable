@@ -3,6 +3,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
+import { NgxAutoScrollModule } from "ngx-auto-scroll";
 
 import { AppComponent } from './app.component';
 import { PostComponent } from './post/post.component';
@@ -38,6 +39,7 @@ import { HomeComponent } from './home/home.component';
               whitelistedDomains: ['localhost:8000']
           }
       }),
+      NgxAutoScrollModule,
       ReactiveFormsModule,
   ],
   providers: [

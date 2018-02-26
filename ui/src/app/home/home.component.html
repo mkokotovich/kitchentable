@@ -8,7 +8,7 @@
             <!-- New post input -->
             <app-new-post-input (onPostAdd)="addPost($event)"></app-new-post-input>
         </div>
-        <div class="col-md-9 posts">
+        <div ngx-auto-scroll lock-y-offset="10" observe-attributes class="col-md-9 posts">
             <!-- List of posts -->
             <app-post-list class="col-12" [posts]="posts" (postDelete)="deletePost($event)"></app-post-list>
         </div>
