@@ -36,7 +36,7 @@ class GroupViewSet(viewsets.ModelViewSet):
 
 
 class PostViewSet(viewsets.ModelViewSet):
-    queryset = Post.objects.all().order_by('-created')
+    queryset = Post.objects.all().order_by('created')
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated, IsOwnerPermission,)
 
