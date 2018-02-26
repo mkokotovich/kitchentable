@@ -48,4 +48,5 @@ class PostSerializer(serializers.HyperlinkedModelSerializer):
     owner = UserSummarySerializer(many=False, read_only=True)
     class Meta:
         model = Post
-        fields = ('url', 'owner', 'content', 'likes')
+        fields = ('url', 'owner', 'content', 'created', 'likes')
+        read_only_fields = ('created',)

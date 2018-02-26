@@ -1,6 +1,13 @@
 <div class="card">
     <div class="col-12">
-        <h5 class="card-title">{{ post.owner.username }}</h5>
+        <div class="row justify-content-between">
+            <div class="col-6">
+                <h5 class="card-title">{{ post.owner.username }}</h5>
+            </div>
+            <div class="col-6 text-right">
+                {{post.created | date:'short'}}
+            </div>
+        </div>
         <div class="card-block">
             <p class="card-text">{{ post.content }}</p>
         </div>
