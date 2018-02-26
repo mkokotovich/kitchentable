@@ -22,8 +22,12 @@ export class AuthService {
             .map(response => {
                 // login successful if there's a jwt token in the response
                 var token = response.token;
+                var user = response.user;
                 if (token) {
                     localStorage.setItem('id_token', token);
+                    if (user) {
+                        localStorage.setItem('user', JSON.stringify(user));
+                    }
 
                     // return true to indicate successful login
                     return true;
@@ -62,8 +66,18 @@ export class AuthService {
         return !this.jwtHelper.isTokenExpired(token);
     }
 
+    public isCurrentUser(user): Boolean {
+        var value = localStorage.getItem('user');
+        var currentUser = null;
+        if (value) {
+            currentUser = (new URL(JSON.parse(value).url)).pathname;
+        }
+        return currentUser && currentUser == (new URL(user.url)).pathname;
+    }
+
     logout() {
         localStorage.removeItem("id_token");
+        localStorage.removeItem("user");
     }
 
     public isLoggedIn(): Boolean {

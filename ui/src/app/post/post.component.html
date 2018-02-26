@@ -4,7 +4,7 @@
         <div class="card-block">
             <p class="card-text">{{ post.content }}</p>
         </div>
-        <div class="text-right">
+        <div *ngIf="canDelete()" class="text-right">
             <button type="button" class="btn btn-sm btn-danger" (click)="deletePost()">Delete</button>
         </div>
     </div>
