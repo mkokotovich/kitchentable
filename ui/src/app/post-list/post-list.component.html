@@ -1,5 +1,1 @@
-<div class="container-fluid text-left pb-5">
-  <div class="row">
-      <app-post class="col-12" *ngFor="let post of posts" [post]="post" (postDelete)="deletePost($event)"></app-post>
-  </div>
-</div>
+<app-post *ngFor="let post of posts" [post]="post" (postDelete)="deletePost($event)"></app-post>
