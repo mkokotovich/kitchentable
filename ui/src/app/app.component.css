@@ -1,10 +1,13 @@
-.auth {
-    float: right;
-}
 a.authlink {
     text-decoration: none;
     color: #ffffff;
     text-align: right;
     font-weight: bold;
     cursor: pointer;
+}
+
+.navbar {
+    justify-content: space-between;
+    min-height: 70px;
+    height: 70px;
 }

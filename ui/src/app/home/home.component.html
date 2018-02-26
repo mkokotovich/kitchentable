@@ -1,4 +1,4 @@
-<div class="container-fluid">
+<div class="container-fluid home">
     <div class="row">
         <div class="col-md-3">
             <!-- Profile info? -->
@@ -8,7 +8,7 @@
             <!-- New post input -->
             <app-new-post-input (onPostAdd)="addPost($event)"></app-new-post-input>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-9 posts">
             <!-- List of posts -->
             <app-post-list class="col-12" [posts]="posts" (postDelete)="deletePost($event)"></app-post-list>
         </div>

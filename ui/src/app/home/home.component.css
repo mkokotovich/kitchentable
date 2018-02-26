@@ -1,0 +1,15 @@
+.home {
+    margin-top: 70px;
+    height: -o-calc(100vh - 70px); /* opera */
+    height: -webkit-calc(100vh - 70px); /* google, safari */
+    height: -moz-calc(100vh - 70px); /* firefox */
+    height: calc(100vh - 70px); /* firefox */
+}
+
+.posts {
+    height: -o-calc(100vh - 70px); /* opera */
+    height: -webkit-calc(100vh - 70px); /* google, safari */
+    height: -moz-calc(100vh - 70px); /* firefox */
+    height: calc(100vh - 70px); /* firefox */
+    overflow-y: scroll;
+}
