@@ -1,3 +1,15 @@
 .card {
-    padding: .75rem;
+    padding: .6rem;
+}
+
+.post-user {
+    max-width: 200px;
+}
+
+.post-owner {
+    font-size: medium;
+    font-weight: bold;
+}
+.post-date {
+    font-size: small;
 }

@@ -1,18 +1,18 @@
 <div class="card">
-    <div class="col-12">
+    <div class="card-block">
         <div class="row justify-content-between">
-            <div class="col-6">
-                <h5 class="card-title">{{ post.owner.username }}</h5>
+            <div class="col-auto post-user">
+                <span class="post-owner">{{ post.owner.username }}</span>
+                <br>
+                <span class="post-date">{{post.created | date:'short'}}</span>
             </div>
-            <div class="col-6 text-right">
-                {{post.created | date:'short'}}
+            <div class="col text-left">
+                <p class="card-text">{{ post.content }}</p>
             </div>
-        </div>
-        <div class="card-block">
-            <p class="card-text">{{ post.content }}</p>
-        </div>
-        <div *ngIf="canDelete()" class="text-right">
-            <button type="button" class="btn btn-sm btn-danger" (click)="deletePost()">Delete</button>
+            <div class="col-auto">
+                <button type="button" class="btn btn-sm btn-success" (click)="likePost()">Like</button>
+                <button *ngIf="canDelete()" type="button" class="btn btn-sm btn-danger" (click)="deletePost()">Delete</button>
+            </div>
         </div>
     </div>
 </div>
