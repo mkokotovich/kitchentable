@@ -1,6 +1,9 @@
 <div class="row mb-2">
     <div class="col">
-        <textarea placeholder="Write a new post..." class="form-control" [(ngModel)]="newPost.text">
+        <textarea (keyup.enter)="submitNewPost()"
+                  placeholder="Write a new post..."
+                  class="form-control"
+                  [(ngModel)]="newPost.text">
         </textarea>
     </div>
 

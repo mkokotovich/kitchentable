@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-field">
                             <label>Password:</label>
-                            <input name="loginPassword" formControlName="loginPassword"
+                            <input (keyup.enter)="login()" name="loginPassword" formControlName="loginPassword"
                                                    type="password">
                         </div>
                         <div *ngIf="loginPassword.invalid && loginPassword.dirty"
@@ -64,7 +64,7 @@
                         </div>
                         <div class="form-field">
                             <label>Verify Password:</label>
-                            <input name="signupVerifyPassword" formControlName="signupVerifyPassword"
+                            <input (keyup.enter)="signup()" name="signupVerifyPassword" formControlName="signupVerifyPassword"
                                                    type="password">
                         </div>
                     </fieldset>
