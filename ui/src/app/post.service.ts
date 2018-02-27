@@ -30,4 +30,14 @@ export class PostService {
       const url = new URL(payload.url);
       return this.http.patch(url.pathname, payload);
   }
+
+  like(post) {
+      const postUrl = new URL(post.url);
+      return this.http.post('/api/likes/', { 'post': postUrl.pathname});
+  }
+
+  unlike(like) {
+      const likeUrl = new URL(like.url);
+      return this.http.delete(likeUrl.pathname);
+  }
 }
